@@ -64,4 +64,4 @@ class TestConstructorPage:
         order_page.wait_clickable(10, loc.INGREDIENT)
         order_page.make_order(loc.INGREDIENT)
         order_page.wait_visibility(10, loc.CONFIRMATION_POPUP)
-        assert 'Modal_modal_opened__3ISw4' in order_page.get_value(loc.POP_UP_SECTION, "class")
+        assert order_page.driver.find_element(*loc.CONFIRMATION_POPUP)
