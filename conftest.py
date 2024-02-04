@@ -42,8 +42,10 @@ def create_new_user():
     requests.delete(url=urls.EP_USER, headers={"Authorization": response_json["accessToken"]})
 
 
-def auth(driver, create_new_user):
-    page = BasePage(driver)
+@pytest.fixture(scope="class")
+def auth(driver, request, create_new_user):
+    request.cls.driver.get(urls.EP_LOGIN)
+    page = BasePage(request.cls.driver)
     page.driver.find_element(*loc.EMAIL_AUTH_FIELD).send_keys(create_new_user[0])
     page.driver.find_element(*loc.PASSWORD_AUTH_FIELD).send_keys(create_new_user[1])
     page.driver.find_element(*loc.LOGIN_BUTTON).click()

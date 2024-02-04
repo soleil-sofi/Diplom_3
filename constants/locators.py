@@ -17,40 +17,36 @@ PASSWORD_FIELD = (By.XPATH, './/label[contains(text(), "Пароль")]')
 """Личный кабинет"""
 ACCOUNT_BUTTON = (By.XPATH, './/*[@href="/account"]')
 ORDER_HISTORY = (By.XPATH, './/*[@href="/account/order-history"]')
-LOGOUT_BUTTON = (By.CLASS_NAME, 'Account_button__14Yp3 text text_type_main-medium text_color_inactive')
+LOGOUT_BUTTON = (By.XPATH, './/*[@class="Account_button__14Yp3 text text_type_main-medium text_color_inactive"]')
 
 """Конструктор"""
 CONSTRUCTOR_BUTTON = (By.XPATH, './/p[contains(text(),"Конструктор")]')
 ORDER_FEED_BUTTON = (By.XPATH, './/*[@href="/feed"]')
 INGREDIENT = (By.XPATH, './/ul[@class="BurgerIngredients_ingredients__list__2A-mT"][1]')
-DETAILS_POPUP = (By.CLASS_NAME, 'Modal_modal__contentBox__sCy8X pt-10 pb-15')
+DETAILS_POPUP = (By.XPATH, './/*[@class="Modal_modal__contentBox__sCy8X pt-10 pb-15"]')
 CLOSE_DETAILS_POPUP = (By.XPATH, './/div[@class="Modal_modal__contentBox__sCy8X pt-10 pb-15"]'
                                  '/following-sibling::button')
 INGREDIENT_COUNTER = (By.XPATH, './/ul[@class="BurgerIngredients_ingredients__list__2A-mT"][1]/a[1]'
                                 '/div[@class="counter_counter__ZNLkj counter_default__28sqi"]/p')
 ORDER_SECTION = (By.XPATH, './/section[@class="BurgerConstructor_basket__29Cd7 mt-25 "]')
-MAKE_ORDER_BUTTON = (By.CLASS_NAME, 'button_button__33qZ0 button_button_type_primary__1O7Bx '
-                                    'button_button_size_large__G21Vg')
-CONFIRMATION_POPUP = (By.CLASS_NAME, 'Modal_modal__contentBox__sCy8X pt-30 pb-30')
+MAKE_ORDER_BUTTON = (By.XPATH, './/*[@class="button_button__33qZ0 button_button_type_primary__1O7Bx '
+                               'button_button_size_large__G21Vg"]')
+CONFIRMATION_POPUP = (By.XPATH, './/*[@class="Modal_modal__contentBox__sCy8X pt-30 pb-30"]')
 
 """Лента заказов"""
 ORDER_FROM_FEED = (By.XPATH, './/li[@class="OrderHistory_listItem__2x95r mb-6"][1]')
-ORDER_POPUP = (By.CLASS_NAME, 'Modal_orderBox__1xWdi Modal_modal__contentBox__sCy8X p-10')
+ORDER_POPUP = (By.XPATH, './/*[@class="Modal_orderBox__1xWdi Modal_modal__contentBox__sCy8X p-10"]')
 CLOSE_ORDER_POPUP = (By.XPATH, './/div[@class="Modal_orderBox__1xWdi Modal_modal__contentBox__sCy8X p-10"]'
                                '/following-sibling::button')
-ORDER_NUMBER = (By.CLASS_NAME, 'Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m '
-                               'text text_type_digits-large mb-8')
+ORDER_NUMBER = (By.XPATH, './/*[@class="Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m '
+                               'text text_type_digits-large mb-8"]')
 ORDER_NUMBER_FROM_HISTORY = (By.XPATH, './/*[@class="OrderHistory_textBox__3lgbs mb-6"]'
                                        '/p[@class="text text_type_digits-default"]')
 DONE_FOR_TODAY = (By.XPATH, './/p[contains(text(), "за сегодня")]/following-sibling::p')
-DONE_SUM = (By.CLASS_NAME, './/p[contains(text(), "за все время")]/following-sibling::p')
+DONE_SUM = (By.XPATH, './/p[contains(text(), "за все время")]/following-sibling::p')
 LAST_FROM_IN_PROCESS = (By.XPATH, '//ul[@class="OrderFeed_orderListReady__1YFem OrderFeed_orderList__cBvyi"]'
                                   '/li[1]/text()[2]')
 
 
 def order_number_in_feed(order_number):
     return By.XPATH, f'.//*[contains(text(), "{order_number}")]'
-
-
-def locator_by_value(value):
-    return By.XPATH, f'.//*[@value="{value}"]'
