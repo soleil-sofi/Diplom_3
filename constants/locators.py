@@ -26,7 +26,7 @@ INGREDIENT = (By.XPATH, './/ul[@class="BurgerIngredients_ingredients__list__2A-m
 INGREDIENT_NAME = (By.XPATH, './/ul[@class="BurgerIngredients_ingredients__list__2A-mT"][1]/a[1]/child::p')
 HEADER_INGREDIENT_POPUP = (By.XPATH, './/h2[text()="Детали ингредиента"]')
 INGREDIENT_NAME_IN_POPUP = (By.XPATH, './/h2[text()="Детали ингредиента"]/following-sibling::p')
-INGREDIENT_POPUP = (By.XPATH, './/section[contains(@class, "Modal_modal__P3_V5")]')
+POP_UP_SECTION = (By.XPATH, './/section[contains(@class, "Modal_modal__P3_V5")]')
 CLOSE_DETAILS_POPUP = (By.XPATH, './/div[@class="Modal_modal__contentBox__sCy8X pt-10 pb-15"]'
                                  '/following-sibling::button')
 INGREDIENT_COUNTER = (By.XPATH, './/ul[@class="BurgerIngredients_ingredients__list__2A-mT"][1]/a[1]'
