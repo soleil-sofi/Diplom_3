@@ -5,6 +5,11 @@ from pages.base_page import BasePage
 
 class ResetPasswordPage(BasePage):
 
+    @allure.step('Кликнуть на "Восстановить пароль"')
+    def follow_reset_password_link(self):
+        self.scroll_method(loc.RESET_PASSWORD_LINK)
+        self.driver.find_element(*loc.RESET_PASSWORD_LINK).click()
+
     @allure.step('Заполнить поле "Email"')
     def set_email(self, email):
         self.driver.find_element(*loc.EMAIL_FIELD_RESET_PAGE).send_keys(email)

@@ -3,6 +3,7 @@ import pytest
 # import argparse
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from pages.base_page import BasePage
 import data_generators as gen
@@ -18,10 +19,9 @@ from constants import urls
 @pytest.fixture(scope="class", autouse=True)
 def driver(request):
     with allure.step('Открыть браузер'):
-        # if driver_name == "firefox":
-        #     request.cls.driver = webdriver.Firefox()
-        # else:
-        request.cls.driver = webdriver.Chrome()
+        opt = Options()
+        opt.add_argument("--start-maximized")
+        request.cls.driver = webdriver.Chrome(options=opt)
     yield
     with allure.step('Закрыть браузер'):
         request.cls.driver.quit()
