@@ -7,7 +7,7 @@ from pages.order_feed_page import OrderFeedPage
 from pages.constructor_page import ConstructorPage
 
 
-@allure.suite("Лента заказов)")
+@allure.suite("Лента заказов")
 @pytest.mark.usefixtures('driver', 'auth')
 class TestOrderFeed:
 
