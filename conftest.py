@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 from pages.base_page import BasePage
 import data_generators as gen
-from constants import locators as loc
+from constants import user_locators as loc
 from constants import urls
 
 

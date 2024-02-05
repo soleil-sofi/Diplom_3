@@ -1,5 +1,7 @@
+import time
+
 import allure
-from constants import locators as loc
+from constants import constructor_locators as loc
 from pages.base_page import BasePage
 
 
@@ -27,8 +29,24 @@ class ConstructorPage(BasePage):
         order_area = self.driver.find_element(*loc.ORDER_SECTION)
         self.replace_element(ingredient, order_area)
 
+    @allure.step('Кликнуть "Оформить заказ"')
+    def click_make_order_button(self):
+        self.driver.find_element(*loc.MAKE_ORDER_BUTTON).click()
+
     @allure.step('Сделать заказ')
     def make_order(self, locator):
         self.add_ingredient_to_order(locator)
-        self.driver.find_element(*loc.MAKE_ORDER_BUTTON).click()
+        self.click_make_order_button()
         self.wait_clickable(10, loc.MAKE_ORDER_BUTTON)
+
+    @allure.step('Свернуть поп-ап заказа (кликнуть на крестик)')
+    def minimize_order_popup(self):
+        self.driver.find_element(*loc.CLOSE_ORDER_POPUP).click()
+
+    def wait_order_number(self):
+        """Ожидание номера заказа (т.к. сразу после создания появляется номер 9999)"""
+        for _ in range(10):
+            if self.get_text(loc.ORDER_NUMBER) == '9999':
+                time.sleep(1)
+            else:
+                break

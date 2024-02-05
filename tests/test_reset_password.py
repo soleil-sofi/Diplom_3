@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from constants import urls
-from constants import locators as loc
+from constants import user_locators as loc
 from pages.reset_password_page import ResetPasswordPage
 
 

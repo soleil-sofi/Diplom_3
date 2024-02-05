@@ -1,5 +1,5 @@
 import allure
-from constants import locators as loc
+from constants import user_locators as loc
 from pages.base_page import BasePage
 
 
