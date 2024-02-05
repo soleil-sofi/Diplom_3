@@ -1,6 +1,5 @@
 import allure
 import pytest
-# import argparse
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -11,17 +10,23 @@ from constants import user_locators as loc
 from constants import urls
 
 
-# parser = argparse.ArgumentParser(description='driver: chrome/firefox')
-# parser.add_argument('driver_name', type=str, help='host')
-# args = parser.parse_args()
+def pytest_addoption(parser):
+    parser.addoption('--driver_name', type=str, default='chrome', help='choose one of drivers: chrome or firefox')
 
 
 @pytest.fixture(scope="class", autouse=True)
 def driver(request):
+    driver_name = request.config.getoption('--driver_name')
     with allure.step('Открыть браузер'):
-        opt = Options()
-        opt.add_argument("--start-maximized")
-        request.cls.driver = webdriver.Chrome(options=opt)
+        if driver_name == 'firefox':
+            options = webdriver.FirefoxOptions()
+            options.add_argument('--width=1300')
+            options.add_argument('--height=800')
+            request.cls.driver = webdriver.Firefox(options=options)
+        else:
+            options = Options()
+            options.add_argument("--start-maximized")
+            request.cls.driver = webdriver.Chrome(options=options)
     yield
     with allure.step('Закрыть браузер'):
         request.cls.driver.quit()
@@ -46,7 +51,10 @@ def create_new_user():
 def auth(driver, request, create_new_user):
     request.cls.driver.get(urls.EP_LOGIN)
     page = BasePage(request.cls.driver)
+    page.wait_clickable(10, loc.EMAIL_AUTH_FIELD)
     page.driver.find_element(*loc.EMAIL_AUTH_FIELD).send_keys(create_new_user[0])
+    page.wait_clickable(10, loc.PASSWORD_AUTH_FIELD)
     page.driver.find_element(*loc.PASSWORD_AUTH_FIELD).send_keys(create_new_user[1])
+    page.wait_clickable(10, loc.LOGIN_BUTTON)
     page.driver.find_element(*loc.LOGIN_BUTTON).click()
     page.wait_visibility(10, loc.HEADER_MAIN_PAGE)
