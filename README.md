@@ -1,5 +1,5 @@
-### Diplom_3
-Тесты веб-приложения [Stellar Burgers](https://stellarburgers.nomoreparties.site/)
+## Дипломный проект. Задание 3: веб-приложение
+### Тесты веб-приложения [Stellar Burgers](https://stellarburgers.nomoreparties.site/)
 - в папке `constants` содержатся классы с методами содержатся тестовые данные
 - в папке `pages` содержатся методы по тестируемым страницам 
 - в папке `tests` содержатся тесты
